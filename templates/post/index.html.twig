@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista{% endblock %}
+
+{% block body %}
+
+
+<div class="container"> 
+    <div class="row g-3 mt-5 mb-5"> 
+        {% for post in posts %}
+                    <div class="col-md-4"> 
+                        <div class="card">
+                            <div class="card-body"> 
+                                <span class="text-uppercase text-danger fw-bold fs-6">{{ post.title }}</span>
+                                <p class="card-text">{{ post.body }}</p>
+                                {% if app.user.id == post.user.id %}
+                                <div>
+                                    <span class="text-dark">{{ post.userName }}</span>
+                                    <a class="float-end btn btn-outline-danger btn-sm" href="/lista/delete/{{ post.id }}">
+                                        Delete
+                                    </a>
+                                </div>
+                                {% endif %}
+                            </div> 
+                        </div> 
+                    </div>
+        {% endfor %} 
+    </div>
+</div>
+
+{% endblock %}
